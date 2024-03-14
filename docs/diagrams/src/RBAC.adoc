@@ -1,0 +1,64 @@
+[plantuml, class-diagram, svg]
+----
+@startuml RBAC
+hide empty methods
+hide empty members
+' Styles for the Context diagram.
+' skinparam handwritten true
+skinparam defaultTextAlignment center
+skinparam DefaultFontName "Ink Free"
+' Define the system context.
+' ** = bold
+
+
+namespace Context <<Folder>> {
+
+    class          SecurityContext{
+        + SecurityContext()
+        + SecurityContext(Principal user)
+        + setPrincipal(Principal user)
+        + bool isUserInRole(RoleCollection roles);
+    }
+
+    class Principal {
+        + Principal(String name,  RoleCollection roles)
+        + string name <<get>>
+    }
+
+    SecurityContext --> "LoggedInUser" Principal
+}
+
+
+namespace Authentication <<Folder>> {
+
+    class          AuthenticationByUsernamePassword{
+     boolean login(String username, String password)	
+    }
+    AuthenticationByUsernamePassword --> SecurityContext
+
+
+}
+
+
+namespace Authorisation <<Folder>> {
+    class AuthorisationByRole {
+        + AuthorisationByRole(SecurityContext)
+        + bool isAuthorized(RoleCollection roles)
+    }
+ 
+    AuthorisationByRole --> SecurityContext
+}
+
+' namespace BussinessService <<Folder>> {
+' 
+    'class          ProductService {
+'     + void listProducts()
+ '    + void addProductToShoppingcard()
+  '   + void removeProduct(Product product)
+'}
+ '   ProductService --> Authorisation
+
+'}
+
+@enduml
+----

@@ -1,0 +1,8 @@
+@startuml
+class AuthorisationByRole {
+    + AuthorisationByRole(context:Security.Context.SecurityContext)
+    + isAuthorized(roles:Roles) : bool
+}
+class "List`1"<T> {
+}
+@enduml

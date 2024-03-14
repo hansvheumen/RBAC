@@ -1,0 +1,14 @@
+@startuml
+!include .\\RBAC\Program.puml
+!include .\\TestRBAC\GlobalUsings.puml
+!include .\\RBAC\security\Authorisation\AuthorisationByRole.puml
+!include .\\RBAC\security\Context\SecurityContext.puml
+!include .\\TestRBAC\security\Authorisation\AuthorisationByRoleTest.puml
+!include .\\TestRBAC\security\Context\SecurityContextTest.puml
+!include .\\RBAC\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.puml
+!include .\\RBAC\obj\Debug\net8.0\RBAC.AssemblyInfo.puml
+!include .\\RBAC\obj\Debug\net8.0\RBAC.GlobalUsings.g.puml
+!include .\\TestRBAC\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.puml
+!include .\\TestRBAC\obj\Debug\net8.0\TestRBAC.AssemblyInfo.puml
+!include .\\TestRBAC\obj\Debug\net8.0\TestRBAC.GlobalUsings.g.puml
+@enduml

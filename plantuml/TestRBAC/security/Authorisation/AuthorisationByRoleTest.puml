@@ -1,0 +1,10 @@
+@startuml
+class AuthorisationByRoleTest {
+    + WhenEmptyUserInRoleShouldReturnFalse() : void
+    + WhenUserInRoleWithOneRoleShouldReturnTrue() : void
+    + WhenUserInRoleWithTwoRolesShouldReturnTrue() : void
+    + WhenUserInRoleWithTwoRolesWithoutAdminShouldReturnFalse() : void
+}
+class "List`1"<T> {
+}
+@enduml

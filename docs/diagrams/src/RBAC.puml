@@ -1,0 +1,58 @@
+@startuml RBAC
+hide empty methods
+hide empty members
+' Styles for the Context diagram.
+skinparam handwritten true
+skinparam defaultTextAlignment center
+skinparam DefaultFontName "Ink Free"
+' Define the system context.
+' ** = bold
+
+
+namespace Context <<Folder>> {
+
+    class          SecurityContext
+    SecurityContext : + User getLoggedInUser();
+    SecurityContext : + boolean isUserInRole(RoleCollection role);
+
+}
+
+
+namespace Authentication <<Folder>> {
+
+    class          AuthenticationByUsernamePassword
+    interface      Authentication
+
+
+    Authentication <|.. AuthenticationByUsernamePassword
+    Authentication --> SecurityContext
+    AuthenticationByUsernamePassword : boolean login(String username, String password)	
+
+}
+
+
+namespace Authorisation <<Folder>> {
+
+    class          AuthorisationByRole    
+    AuthorisationByRole --> SecurityContext
+    class          RoleCollection
+
+  
+
+    AuthorisationByRole --> RoleCollection
+    AuthorisationByRole : + boolean isAuthorised(RoleCollection roles)	
+
+}
+
+namespace BussinessService <<Folder>> {
+
+    class          ProductService
+    ProductService : + void listProducts()
+    ProductService : + void addProductToShoppingcard()
+    ProductService : + void removeProduct(Product product)
+
+    ProductService --> Authorisation
+
+}
+
+@enduml
