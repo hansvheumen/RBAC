@@ -9,6 +9,6 @@ namespace RBAC.Security.Authentication
     using RoleCollection = List<String>;
     public interface IRoleProvider
     {
-        RoleCollection? getRolesForUser(string? username);
+        RoleCollection getRolesForUser(string? username);
     }
 }

@@ -21,11 +21,11 @@ namespace RBAC.Security.Authentication
             bool authenticated = authenticator.execute(username, password);
             if (authenticated)
             {
-                RoleCollection? roles = roleProvider.getRolesForUser(username);
+                RoleCollection roles = roleProvider.getRolesForUser(username);
                 currentUser = new Principal(username, roles);
             }
             AuthorizeUserToContext(currentUser);
-            return currentUser != null;
+            return currentUser is not null;
         }
 
 
