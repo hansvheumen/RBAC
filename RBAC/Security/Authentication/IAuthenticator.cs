@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RBAC.Security.Authentication
 {
-    using RoleCollection = List<String>;
-    public interface RoleProvider
+    public interface IAuthenticator
     {
-        RoleCollection? getRolesForUser(string? username);
+        bool execute(string username, string password);
     }
 }

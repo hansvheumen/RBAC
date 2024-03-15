@@ -4,11 +4,11 @@ namespace RBAC.Security.Authentication
     using RoleCollection = List<String>;
     public class AuthenticationByUsernamePassword
     {
-        private SecurityContext context;
-        private Authenticator authenticator;
-        private RoleProvider roleProvider;
+        private readonly SecurityContext context;
+        private readonly IAuthenticator authenticator;
+        private readonly IRoleProvider roleProvider;
 
-        public AuthenticationByUsernamePassword(SecurityContext context, Authenticator authenticator, RoleProvider roleProvider)
+        public AuthenticationByUsernamePassword(SecurityContext context, IAuthenticator authenticator, IRoleProvider roleProvider)
         {
             this.context = context;
             this.authenticator = authenticator;

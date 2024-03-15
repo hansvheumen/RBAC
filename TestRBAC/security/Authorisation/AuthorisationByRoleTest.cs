@@ -8,7 +8,7 @@ namespace TestRBAC.security.Authorisation
     [TestClass]
     public class AuthorisationByRoleTest
     {
-        
+
         static Role adminRole = "Admin";
         static Role moderatorRole = "Moderator";
         static Role userRole = "User";
@@ -25,14 +25,14 @@ namespace TestRBAC.security.Authorisation
         {
             SecurityContext sc = new SecurityContext();
 
-            Assert.AreEqual(false, sc.isUserInRole(adminRole));
+            Assert.IsFalse(sc.isUserInRole(adminRole));
         }
 
         [TestMethod]
         public void WhenUserInRoleWithOneRoleShouldReturnTrue()
         {
             SecurityContext sc = new SecurityContext(new Principal("John", oneUserRoles));
-            Assert.AreEqual(true, sc.isUserInRole(moderatorRole));
+            Assert.IsTrue(sc.isUserInRole(moderatorRole));
 
         }
 
@@ -40,9 +40,9 @@ namespace TestRBAC.security.Authorisation
         public void WhenUserInRoleWithTwoRolesShouldReturnTrue()
         {
             SecurityContext sc = new SecurityContext(new Principal("John", twoUserRoles));
-            
-            Assert.AreEqual(true, sc.isUserInRole(moderatorRole));
-            Assert.AreEqual(true, sc.isUserInRole(userRole));
+
+            Assert.IsTrue(sc.isUserInRole(moderatorRole));
+            Assert.IsTrue(sc.isUserInRole(userRole));
 
         }
 
@@ -51,7 +51,7 @@ namespace TestRBAC.security.Authorisation
         {
             SecurityContext sc = new SecurityContext(new Principal("John", twoUserRoles));
 
-            Assert.AreEqual(false, sc.isUserInRole(adminRole));
+            Assert.IsFalse(sc.isUserInRole(adminRole));
         }
 
 

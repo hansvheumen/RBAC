@@ -8,7 +8,7 @@ namespace TestRBAC.security.Authentication
 {
     using RBAC.Security.Authentication;
     using RoleCollection = List<String>;
-     class FakeRoleProvider : RoleProvider
+     class FakeRoleProvider : IRoleProvider
     {
 
         public RoleCollection? getRolesForUser(string? username)

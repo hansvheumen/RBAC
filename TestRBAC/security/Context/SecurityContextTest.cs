@@ -25,7 +25,7 @@ namespace TestRBAC.security.Context
 
         SecurityContext? sc;
         AuthorisationByRole? abr;
-        
+
 
         [TestMethod]
         public void whenUserIsModeratorAndMethodIsAuthorisedForModerator()
@@ -33,8 +33,8 @@ namespace TestRBAC.security.Context
             sc = new SecurityContext((new Principal("John", userModeratorRoles)));
             abr = new AuthorisationByRole(sc);
 
-            Assert.AreEqual(true, abr.isAuthorized(methodModeratorRole));
-            Assert.AreEqual(false, abr.isAuthorized(methodUserAndAdminRole));
+            Assert.IsTrue(abr.isAuthorized(methodModeratorRole));
+            Assert.IsFalse(abr.isAuthorized(methodUserAndAdminRole));
 
         }
 
@@ -44,7 +44,7 @@ namespace TestRBAC.security.Context
             sc = new SecurityContext((new Principal("John", userModeratorAndUserRole)));
             abr = new AuthorisationByRole(sc);
 
-            Assert.AreEqual(true, abr.isAuthorized(methodUserAndAdminRole));
+            Assert.IsTrue(abr.isAuthorized(methodUserAndAdminRole));
 
         }
         [TestMethod]
@@ -53,7 +53,7 @@ namespace TestRBAC.security.Context
             sc = new SecurityContext((new Principal("John", userModeratorRoles)));
             abr = new AuthorisationByRole(sc);
 
-            Assert.AreEqual(false, abr.isAuthorized(methodUserAndAdminRole));
+            Assert.IsFalse(abr.isAuthorized(methodUserAndAdminRole));
 
         }
 

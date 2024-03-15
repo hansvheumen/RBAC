@@ -17,7 +17,7 @@ namespace TestRBAC.security.Authentication
         {
             SecurityContext sc = new SecurityContext();
 
-            Assert.AreEqual(false, sc.isUserInRole("adminRole"));
+            Assert.IsFalse(sc.isUserInRole("adminRole"));
         }
     }
 }

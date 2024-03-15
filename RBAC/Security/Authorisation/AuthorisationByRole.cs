@@ -1,11 +1,13 @@
 namespace RBAC.Security.Authorisation
 {
+    using Security.Context;
+    using System.Data;
     using RoleCollection = List<String>;
     public class AuthorisationByRole
     {
-        private Security.Context.SecurityContext context;
+        private readonly SecurityContext context;
 
-        public AuthorisationByRole(Security.Context.SecurityContext context)
+        public AuthorisationByRole(SecurityContext context)
         {
             this.context = context;
         }
@@ -13,13 +15,10 @@ namespace RBAC.Security.Authorisation
         public bool isAuthorized(RoleCollection roles)
         {
             bool isAuthorized = false;
-            foreach (var role in roles)
+            foreach (var role in roles.Where(x => this.context.isUserInRole(x)))
             {
-                if (this.context.isUserInRole(role))
-                {
-                    isAuthorized = true;
-                    break;
-                }
+                isAuthorized = true;
+                break;
             }
             return isAuthorized;
         }
