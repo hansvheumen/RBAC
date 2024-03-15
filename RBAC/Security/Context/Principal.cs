@@ -7,9 +7,9 @@ namespace RBAC.Security.Context
         public Principal(string? name, RoleCollection? roles)
         {
             Name = name;
-            this.roles = roles;
+            this.Roles = roles;
         }
         public string? Name { get; }
-        public RoleCollection? roles { get; }
+        public RoleCollection? Roles { get; }
     }
 }

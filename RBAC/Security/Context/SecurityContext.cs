@@ -28,7 +28,7 @@ namespace RBAC.Security.Context
             loggedInUser = user;
         }
 
-        public bool isUserInRole(Role? role)
+        public bool IsUserInRole(Role? role)
         {
             if (loggedInUser is null)
             {
@@ -40,9 +40,22 @@ namespace RBAC.Security.Context
             }
             else
             {
-                return loggedInUser.roles.Contains(role);
+                return loggedInUser.Roles.Contains(role);
             }
 
+        }
+
+        public bool IsUserInRole(RoleCollection? roles)
+        {
+            bool isAuthorized = false;
+            foreach (Role role in roles)
+            {
+                if (IsUserInRole(role))
+                {
+                    isAuthorized = true;
+                }
+            }
+            return isAuthorized;
         }
     }
 }

@@ -25,14 +25,14 @@ namespace TestRBAC.security.Authorisation
         {
             SecurityContext sc = new SecurityContext();
 
-            Assert.IsFalse(sc.isUserInRole(adminRole));
+            Assert.IsFalse(sc.IsUserInRole(adminRole));
         }
 
         [TestMethod]
         public void WhenUserInRoleWithOneRoleShouldReturnTrue()
         {
             SecurityContext sc = new SecurityContext(new Principal("John", oneUserRoles));
-            Assert.IsTrue(sc.isUserInRole(moderatorRole));
+            Assert.IsTrue(sc.IsUserInRole(moderatorRole));
 
         }
 
@@ -41,8 +41,8 @@ namespace TestRBAC.security.Authorisation
         {
             SecurityContext sc = new SecurityContext(new Principal("John", twoUserRoles));
 
-            Assert.IsTrue(sc.isUserInRole(moderatorRole));
-            Assert.IsTrue(sc.isUserInRole(userRole));
+            Assert.IsTrue(sc.IsUserInRole(moderatorRole));
+            Assert.IsTrue(sc.IsUserInRole(userRole));
 
         }
 
@@ -51,7 +51,7 @@ namespace TestRBAC.security.Authorisation
         {
             SecurityContext sc = new SecurityContext(new Principal("John", twoUserRoles));
 
-            Assert.IsFalse(sc.isUserInRole(adminRole));
+            Assert.IsFalse(sc.IsUserInRole(adminRole));
         }
 
 

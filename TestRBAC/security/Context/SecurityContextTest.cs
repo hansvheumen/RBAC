@@ -33,8 +33,8 @@ namespace TestRBAC.security.Context
             sc = new SecurityContext((new Principal("John", userModeratorRoles)));
             abr = new AuthorisationByRole(sc);
 
-            Assert.IsTrue(abr.isAuthorized(methodModeratorRole));
-            Assert.IsFalse(abr.isAuthorized(methodUserAndAdminRole));
+            Assert.IsTrue(abr.IsAuthorized(methodModeratorRole));
+            Assert.IsFalse(abr.IsAuthorized(methodUserAndAdminRole));
 
         }
 
@@ -44,7 +44,7 @@ namespace TestRBAC.security.Context
             sc = new SecurityContext((new Principal("John", userModeratorAndUserRole)));
             abr = new AuthorisationByRole(sc);
 
-            Assert.IsTrue(abr.isAuthorized(methodUserAndAdminRole));
+            Assert.IsTrue(abr.IsAuthorized(methodUserAndAdminRole));
 
         }
         [TestMethod]
@@ -53,7 +53,7 @@ namespace TestRBAC.security.Context
             sc = new SecurityContext((new Principal("John", userModeratorRoles)));
             abr = new AuthorisationByRole(sc);
 
-            Assert.IsFalse(abr.isAuthorized(methodUserAndAdminRole));
+            Assert.IsFalse(abr.IsAuthorized(methodUserAndAdminRole));
 
         }
 

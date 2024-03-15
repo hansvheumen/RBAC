@@ -12,14 +12,9 @@ namespace RBAC.Security.Authorisation
             this.context = context;
         }
 
-        public bool isAuthorized(RoleCollection roles)
+        public bool IsAuthorized(RoleCollection roles)
         {
-            bool isAuthorized = false;
-            foreach (var role in roles.Where(x => this.context.isUserInRole(x)))
-            {
-                isAuthorized = true;
-                break;
-            }
+            bool isAuthorized = this.context.IsUserInRole(roles);
             return isAuthorized;
         }
     }
