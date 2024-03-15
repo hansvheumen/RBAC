@@ -4,12 +4,20 @@ namespace RBAC.Security.Context
 
     public class Principal
     {
-        public Principal(string? name, RoleCollection? roles)
+        public Principal(string? name, RoleCollection roles)
         {
             Name = name;
-            this.Roles = roles;
+            if (roles is null)
+            {
+                this.Roles = new RoleCollection();
+            } else
+            {
+                this.Roles = roles;
+            }
+
+            
         }
         public string? Name { get; }
-        public RoleCollection? Roles { get; }
+        public RoleCollection Roles { get; }
     }
 }

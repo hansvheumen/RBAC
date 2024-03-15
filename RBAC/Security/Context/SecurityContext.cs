@@ -28,7 +28,7 @@ namespace RBAC.Security.Context
             loggedInUser = user;
         }
 
-        public bool IsUserInRole(Role? role)
+        public bool IsUserInRole(Role role)
         {
             if (loggedInUser is null)
             {
@@ -45,7 +45,7 @@ namespace RBAC.Security.Context
 
         }
 
-        public bool IsUserInRole(RoleCollection? roles)
+        public bool IsUserInRole(RoleCollection roles)
         {
             bool isAuthorized = false;
             foreach (Role role in roles)
