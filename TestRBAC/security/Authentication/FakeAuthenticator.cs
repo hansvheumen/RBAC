@@ -2,7 +2,7 @@
 {
     using RBAC.Security.Authentication;
     using RoleCollection = List<String>;
-    class FakeAuthenticor : Authenticator
+    class FakeAuthenticator : Authenticator
     {
         public bool execute(string username, string password)
         {
@@ -18,6 +18,6 @@
     }
 
 }
-}
+
 
 

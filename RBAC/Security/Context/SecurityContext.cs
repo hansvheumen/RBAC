@@ -28,13 +28,21 @@ namespace RBAC.Security.Context
             loggedInUser = user;
         }
 
-        public bool isUserInRole(Role role)
+        public bool isUserInRole(Role? role)
         {
-            if (loggedInUser == null)
+            if (loggedInUser is null)
             {
                 return false;
             }
-            return loggedInUser.roles.Contains(role);
+            else if (role is null)
+            {
+                return false;
+            }
+            else
+            {
+                return loggedInUser.roles.Contains(role);
+            }
+
         }
     }
 }
