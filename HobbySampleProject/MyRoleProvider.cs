@@ -10,7 +10,7 @@ namespace Hobby
     {
         public List<string> getRolesForUser(string? username)
         {
-            if (username == "Biker")
+            if (username == "Fisherman")
             {
                 return ["Player"];
             }

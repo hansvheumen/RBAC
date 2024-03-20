@@ -16,7 +16,7 @@
         {
             if (!Context.IsUserInRole(["Player"])) return;
 
-            Debug.WriteLine(Context.LoggedInUser.Name + ": Creating a new hobby");
+            Debug.WriteLine($"{Context.LoggedInUser.Name}: Creating a new hobby:  {hobby}");
             // Create a new hobby
         }
 
@@ -25,7 +25,7 @@
             if (!Context.IsUserInRole(["Moderator", "Admin"])) return;
 
 
-            Debug.WriteLine(Context.LoggedInUser.Name + ": Deleting a hobby");
+            Debug.WriteLine($"{Context.LoggedInUser.Name}: Deleting a hobby:  {hobby}");
             // Delete a hobby
         }
 
