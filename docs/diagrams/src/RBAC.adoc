@@ -16,8 +16,9 @@ namespace Context <<Folder>> {
     class          SecurityContext{
         + SecurityContext()
         + SecurityContext(Principal user)
-        + setPrincipal(Principal user)
-        + bool isUserInRole(RoleCollection roles);
+        + void authorizeUser(Principal user)
+        + bool IsUserInRole(role:Role)
+        + bool IsUserInRole(roles:RoleCollection)
     }
 
     class Principal {
@@ -31,34 +32,27 @@ namespace Context <<Folder>> {
 
 namespace Authentication <<Folder>> {
 
-    class          AuthenticationByUsernamePassword{
-     boolean login(String username, String password)	
+    class         AuthenticationByUsernamePassword{
+        + AuthenticationByUsernamePassword(\n        SecurityContext context, \n         IAuthenticator authenticator,   \n         IRoleProvider roleProvider)
+     + boolean login(String username, String password)	
     }
     AuthenticationByUsernamePassword --> SecurityContext
 
+    
 
 }
 
 
 namespace Authorisation <<Folder>> {
     class AuthorisationByRole {
-        + AuthorisationByRole(SecurityContext)
+        + AuthorisationByRole(SecurityContext context)
         + bool isAuthorized(RoleCollection roles)
     }
  
     AuthorisationByRole --> SecurityContext
 }
 
-' namespace BussinessService <<Folder>> {
-' 
-    'class          ProductService {
-'     + void listProducts()
- '    + void addProductToShoppingcard()
-  '   + void removeProduct(Product product)
-'}
- '   ProductService --> Authorisation
 
-'}
 
 @enduml
 ----

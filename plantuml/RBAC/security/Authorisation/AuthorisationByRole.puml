@@ -1,7 +1,7 @@
 @startuml
 class AuthorisationByRole {
-    + AuthorisationByRole(context:Security.Context.SecurityContext)
-    + isAuthorized(roles:Roles) : bool
+    + AuthorisationByRole(context:SecurityContext)
+    + IsAuthorized(roles:RoleCollection) : bool
 }
 class "List`1"<T> {
 }

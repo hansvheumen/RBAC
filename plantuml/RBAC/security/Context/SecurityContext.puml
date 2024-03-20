@@ -1,16 +1,12 @@
 @startuml
 class SecurityContext {
-    + SecurityContext(user:Principal)
+    + SecurityContext(user:Principal?)
     + SecurityContext()
-    + isUserInRole(role:Role) : bool
-}
-class Principal {
-    + Principal(name:string, roles:List<Role>)
-    + Name : string <<get>>
+    + authorizeUser(user:Principal?) : void
+    + IsUserInRole(role:Role) : bool
+    + IsUserInRole(roles:RoleCollection) : bool
 }
 class "List`1"<T> {
 }
 SecurityContext --> "LoggedInUser" Principal
-SecurityContext +-- Principal
-Principal --> "roles<Role>" "List`1"
 @enduml

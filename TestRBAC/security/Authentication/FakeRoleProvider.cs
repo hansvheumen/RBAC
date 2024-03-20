@@ -11,7 +11,7 @@ namespace TestRBAC.security.Authentication
      class FakeRoleProvider : IRoleProvider
     {
 
-        public RoleCollection? getRolesForUser(string? username)
+        public RoleCollection getRolesForUser(string? username)
         {
             RoleCollection? roles = null;
             if (username == "admin")

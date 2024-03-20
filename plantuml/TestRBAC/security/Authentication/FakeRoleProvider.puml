@@ -1,0 +1,8 @@
+@startuml
+class FakeRoleProvider {
+    + getRolesForUser(username:string?) : RoleCollection
+}
+class "List`1"<T> {
+}
+IRoleProvider <|-- FakeRoleProvider
+@enduml

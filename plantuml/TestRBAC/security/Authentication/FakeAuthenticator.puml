@@ -1,0 +1,8 @@
+@startuml
+class FakeAuthenticator {
+    + execute(username:string, password:string) : bool
+}
+class "List`1"<T> {
+}
+IAuthenticator <|-- FakeAuthenticator
+@enduml
