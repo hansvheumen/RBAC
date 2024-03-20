@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RBAC", "RBAC\RBAC.csproj", "{3E2A81C7-AB9A-453F-9970-AE2F661C0194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRBAC", "TestRBAC\TestRBAC.csproj", "{71C8EF30-B7B3-47BC-B9DE-AAA89217A8CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRBAC", "TestRBAC\TestRBAC.csproj", "{71C8EF30-B7B3-47BC-B9DE-AAA89217A8CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbySampleProject", "HobbySampleProject\HobbySampleProject.csproj", "{490C9480-FCA4-4623-89E7-97C6E28A6770}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{71C8EF30-B7B3-47BC-B9DE-AAA89217A8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71C8EF30-B7B3-47BC-B9DE-AAA89217A8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71C8EF30-B7B3-47BC-B9DE-AAA89217A8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{490C9480-FCA4-4623-89E7-97C6E28A6770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{490C9480-FCA4-4623-89E7-97C6E28A6770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{490C9480-FCA4-4623-89E7-97C6E28A6770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{490C9480-FCA4-4623-89E7-97C6E28A6770}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
