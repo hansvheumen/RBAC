@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RBAC.Security.Authentication
+namespace RBAC.Security.Authorisation
 {
-    using RoleCollection = List<String>;
+    using RoleCollection = List<string>;
     public interface IRoleProvider
     {
-        RoleCollection getRolesForUser(string? username);
+        RoleCollection? GetRolesForUser(string? username);
     }
 }

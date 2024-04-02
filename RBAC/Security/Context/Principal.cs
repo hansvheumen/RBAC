@@ -4,16 +4,17 @@ namespace RBAC.Security.Context
 
     public class Principal
     {
-        public Principal(string name, RoleCollection roles)
+        public Principal(string name, RoleCollection? roles)
         {
             Name = name;
             if (roles is null)
             {
                 this.Roles = new RoleCollection();
-            } else
+            }
+            else
             {
                 this.Roles = roles;
-            }            
+            }
         }
 
         public override string ToString()

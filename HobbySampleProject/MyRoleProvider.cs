@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hobby
+﻿namespace Hobby
 {
-    internal class MyRoleProvider : RBAC.Security.Authentication.IRoleProvider
+    using RBAC.Security.Authorisation;
+    using RoleCollection = List<String>;
+    internal class MyRoleProvider : IRoleProvider
     {
-        public List<string> getRolesForUser(string? username)
+        public RoleCollection GetRolesForUser(string? username)
         {
             if (username == "Fisherman")
             {

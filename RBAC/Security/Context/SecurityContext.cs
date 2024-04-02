@@ -1,10 +1,26 @@
 namespace RBAC.Security.Context
 {
+    using RBAC.Security.Authentication;
+    using RBAC.Security.Authorisation;
+
     using RoleCollection = List<String>;
     using Role = String;
+    using System.Data;
 
     public class SecurityContext
     {
+
+        private readonly IAuthenticator authenticator;
+        private readonly IRoleProvider? roleProvider;
+
+        public SecurityContext(IAuthenticator authenticator, IRoleProvider? roleProvider)
+        {
+            this.authenticator = authenticator;
+            this.roleProvider = roleProvider;
+        }
+
+        public SecurityContext(IAuthenticator authenticator) : this(authenticator, null) { }
+        
         private Principal? loggedInUser = null;
         public Principal? LoggedInUser
         {
@@ -14,48 +30,32 @@ namespace RBAC.Security.Context
             }
         }
 
-        public SecurityContext(Principal? user)
+        public Principal? Login(string username, string password)
         {
-            loggedInUser = user;
+            Principal? currentUser = authenticator.Execute(username, password);
+            if (currentUser is not null && roleProvider is not null)
+            {
+                RoleCollection? roles = roleProvider.GetRolesForUser(username);
+                currentUser = new Principal(username, roles);
+            }
+            AuthorizeUser(currentUser);
+            return loggedInUser;
+
         }
 
-        public SecurityContext() : this(null)
-        {
-        }
-
-        public void authorizeUser(Principal? user)
+        private void AuthorizeUser(Principal? user)
         {
             loggedInUser = user;
         }
 
         public bool IsUserInRole(Role role)
         {
-            if (loggedInUser is null)
-            {
-                return false;
-            }
-            else if (role is null)
-            {
-                return false;
-            }
-            else
-            {
-                return loggedInUser.Roles.Contains(role);
-            }
-
+            return AuthorisationByRole.IsAuthorized(loggedInUser, role);
         }
 
         public bool IsUserInRole(RoleCollection roles)
         {
-            bool isAuthorized = false;
-            foreach (Role role in roles)
-            {
-                if (IsUserInRole(role))
-                {
-                    isAuthorized = true;
-                }
-            }
-            return isAuthorized;
+            return AuthorisationByRole.IsAuthorized(loggedInUser, roles);
         }
     }
 }

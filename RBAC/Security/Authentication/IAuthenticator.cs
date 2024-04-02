@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RBAC.Security.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace RBAC.Security.Authentication
 {
     public interface IAuthenticator
     {
-        bool execute(string username, string password);
+        Principal? Execute(string username, string password);
     }
 }

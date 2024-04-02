@@ -1,13 +1,9 @@
-﻿using RBAC.Security.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hobby
+﻿namespace TestRBAC.security.Mocks
 {
-    public class MyAuthenticator : RBAC.Security.Authentication.IAuthenticator
+    using RBAC.Security.Authentication;
+    using RBAC.Security.Context;
+    using RoleCollection = List<string>;
+    class MockAuthenticatorLargertThen3 : IAuthenticator
     {
         public Principal? Execute(string username, string password)
         {
@@ -21,4 +17,8 @@ namespace Hobby
             }
         }
     }
+
 }
+
+
+

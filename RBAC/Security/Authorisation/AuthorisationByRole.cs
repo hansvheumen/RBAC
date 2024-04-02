@@ -3,19 +3,33 @@ namespace RBAC.Security.Authorisation
     using Security.Context;
     using System.Data;
     using RoleCollection = List<String>;
+    using Role = String;
     public class AuthorisationByRole
     {
-        private readonly SecurityContext context;
-
-        public AuthorisationByRole(SecurityContext context)
+        public static bool IsAuthorized(Principal? principal, Role role)
         {
-            this.context = context;
+            if (principal is null)
+            {
+                return false;
+            }
+            else
+            {
+                return principal.Roles.Contains(role);
+            }
         }
 
-        public bool IsAuthorized(RoleCollection roles)
+        public static bool IsAuthorized(Principal? principal, RoleCollection roles)
         {
-            bool isAuthorized = this.context.IsUserInRole(roles);
+            bool isAuthorized = false;
+            foreach (Role role in roles)
+            {
+                if (IsAuthorized(principal, role))
+                {
+                    isAuthorized = true;
+                }
+            }
             return isAuthorized;
         }
+
     }
 }

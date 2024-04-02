@@ -7,30 +7,30 @@
     {
         public static void Main(string[] args)
         {
-            // Configure the security context
-            SecurityContext context = new SecurityContext();
-            //AuthorisationByRole auth = new AuthorisationByRole(context);
-            MyRoleProvider roleProvider = new MyRoleProvider();
-            MyAuthenticator authenticator = new MyAuthenticator();
-            AuthenticationByUsernamePassword authentication = new AuthenticationByUsernamePassword(context, authenticator, roleProvider);
-            // end of configuration
 
-
+            SecurityContext context = config();
 
             // Create a new HobbyService
-            HobbyService hobbyService = new HobbyService(context);
-            
+            HobbyService hobbyService = new(context);
+
 
             //login as a Biker
-            authentication.Login("Fisherman", "shark");        
+            context.Login("Fisherman", "shark");
             hobbyService.createHobby("Fishing");
             hobbyService.deleteHobby("Fishing");
 
-            //login as a Admin
-            authentication.Login("Admin", "admin");
+            //login as an Admin
+            context.Login("Admin", "admin");
             hobbyService.createHobby("Debugging");
             hobbyService.deleteHobby("Debugging");
         }
-    
+
+        private static SecurityContext config()
+        {
+            IRoleProvider roleProvider = new MyRoleProvider();
+            MyAuthenticator authenticator = new();
+            SecurityContext context = new(authenticator, roleProvider);
+            return context;
+        }
     }
 }

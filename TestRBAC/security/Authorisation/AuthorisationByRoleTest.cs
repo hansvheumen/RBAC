@@ -2,58 +2,67 @@ namespace TestRBAC.security.Authorisation
 {
 
     using RBAC.Security.Context;
+    using RBAC.Security.Authentication;
+    using TestRBAC.security.Mocks;
     using Role = String;
     using RoleCollection = List<String>;
+    using RBAC.Security.Authorisation;
 
     [TestClass]
     public class AuthorisationByRoleTest
     {
 
-        static Role adminRole = "Admin";
-        static Role moderatorRole = "Moderator";
-        static Role userRole = "User";
+        static readonly Role adminRole = MockUsers.Role.admin.ToString();
+        static readonly Role moderatorRole = MockUsers.Role.moderator.ToString();
+        static readonly Role userRole = MockUsers.Role.user.ToString();
 
-        RoleCollection appRoles = [adminRole, moderatorRole, userRole];
+        readonly RoleCollection appRoles = [adminRole, moderatorRole, userRole];
+        readonly RoleCollection oneUserRoles = [userRole];
+        readonly RoleCollection oneModeratorRoles = [moderatorRole];
+        readonly RoleCollection userModeratorRoles = [moderatorRole, userRole];
 
-        RoleCollection oneUserRoles = [moderatorRole];
-        RoleCollection twoUserRoles = [moderatorRole, userRole];
+        static readonly IAuthenticator authenticator = new MockAuthenticatorLargertThen3();
+        static readonly IRoleProvider roleProvider = new MockRoleProvider();
+        static SecurityContext sc = new SecurityContext(authenticator, roleProvider);
 
+        //[ClassInitialize]
+        //public static void ClassInitialize()
+        //{
+        //     sc = new SecurityContext(authenticator, roleProvider);
+        //}
+
+        [TestMethod]
+        public void IsAuthorizedWhenUserIsNullThenReturnFalse()
+        {
+            Assert.IsFalse(AuthorisationByRole.IsAuthorized(null, adminRole));
+        }
 
 
         [TestMethod]
-        public void WhenEmptyUserInRoleShouldReturnFalse()
+        public void IsAuthorizedWhenUserHasNoRolesThenReturnFalse()
         {
-            SecurityContext sc = new SecurityContext();
-
-            Assert.IsFalse(sc.IsUserInRole(adminRole));
+            Principal? user = new Principal("user", null);
+            Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
+            Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, userModeratorRoles));
         }
 
         [TestMethod]
-        public void WhenUserInRoleWithOneRoleShouldReturnTrue()
+        public void IsAuthorizedWhenUserHasUserRole()
         {
-            SecurityContext sc = new SecurityContext(new Principal("John", oneUserRoles));
-            Assert.IsTrue(sc.IsUserInRole(moderatorRole));
-
+            Principal? user = new Principal("user", oneUserRoles);
+            Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
+            Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userModeratorRoles));
+            Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userRole));
         }
 
         [TestMethod]
-        public void WhenUserInRoleWithTwoRolesShouldReturnTrue()
+        public void IsAuthorizedWhenUserHasUserAndModeratorRole()
         {
-            SecurityContext sc = new SecurityContext(new Principal("John", twoUserRoles));
-
-            Assert.IsTrue(sc.IsUserInRole(moderatorRole));
-            Assert.IsTrue(sc.IsUserInRole(userRole));
-
+            Principal? user = new Principal("user", userModeratorRoles);
+            Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
+            Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userModeratorRoles));
+            Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userRole));
         }
-
-        [TestMethod]
-        public void WhenUserInRoleWithTwoRolesWithoutAdminShouldReturnFalse()
-        {
-            SecurityContext sc = new SecurityContext(new Principal("John", twoUserRoles));
-
-            Assert.IsFalse(sc.IsUserInRole(adminRole));
-        }
-
 
     }
 }
