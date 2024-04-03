@@ -37,7 +37,7 @@ namespace TestRBAC.security.Context
         }
 
         [TestMethod]
-        public void whenUserIsModeratorAndMethodIsAuthorisedForModerator()
+        public void IsUserInRole_UserIsAdminAndMethodIsAuthorisedForAdmin_ReturnsExpectedAuthorization()
         {
          
             Principal? admin = sc.Login(MockUsers.Username.Adam.ToString(), "admin");
@@ -45,12 +45,12 @@ namespace TestRBAC.security.Context
             Assert.IsNotNull(admin);
             Assert.IsTrue(sc.IsUserInRole(methodUserAndAdminRole));
             Assert.IsFalse(sc.IsUserInRole(methodModeratorRole));
-            Assert.IsTrue(sc.IsUserInRole(methodUserAndAdminRole));
+            Assert.IsFalse(sc.IsUserInRole(userModeratorAndUserRole));
 
         }
 
         [TestMethod]
-        public void whenAndMethodHasTwoAuthisationsAndUserHasTwoAutorisationsShouldReturnTrue()
+        public void IsUserInRole_MethodAndUserHaveTwoAuthorizations_ReturnsTrue()
         {
             Principal? moderator = sc.Login(MockUsers.Username.Molly.ToString(), "moderator");
 

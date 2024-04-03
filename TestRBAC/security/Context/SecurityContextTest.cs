@@ -25,7 +25,7 @@ namespace TestRBAC.security.Context
 
 
         [TestMethod]
-        public void whenNotAuthenticatedThenCurrentUserIsNull()
+        public void Login_NotAuthenticatedUser_ReturnsNullCurrentUser()
         {
             authenticator = new MockAuthenticatorNotAuthenticated();
             sc = new SecurityContext(authenticator, roleProvider);
@@ -37,7 +37,7 @@ namespace TestRBAC.security.Context
         }
 
         [TestMethod]
-        public void whenAllwaysAuthenticatedThenCurrentUserIsNotNull()
+        public void Login_AlwaysAuthenticatedUser_ReturnsNonNullCurrentUser()
         {
             authenticator = new MockAuthenticatorAlwaysAuthenticated();
             sc = new SecurityContext(authenticator, roleProvider);
@@ -51,7 +51,7 @@ namespace TestRBAC.security.Context
         }
 
         [TestMethod]
-        public void whenNullRoleProviderThenRolesAreNull()
+        public void Login_NullRoleProvider_ReturnsUserWithNoRoles()
         {
             authenticator = new MockAuthenticatorAlwaysAuthenticated();
             sc = new SecurityContext(authenticator, null);
@@ -64,7 +64,7 @@ namespace TestRBAC.security.Context
 
 
         [TestMethod]
-        public void whenUserAuthorisedAndRoleProviderProvidesRoles()
+        public void Login_UserAuthorisedAndRoleProviderProvidesRoles_ReturnsUserWithRoles()
         {
             authenticator = new MockAuthenticatorAlwaysAuthenticated();
             IRoleProvider userRoleProvider = new MockRoleProviderUser();

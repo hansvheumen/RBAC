@@ -2,7 +2,6 @@ namespace TestRBAC.security.Authorisation
 {
 
     using RBAC.Security.Context;
-    using RBAC.Security.Authentication;
     using TestRBAC.security.Mocks;
     using Role = String;
     using RoleCollection = List<String>;
@@ -21,15 +20,15 @@ namespace TestRBAC.security.Authorisation
         readonly RoleCollection oneModeratorRoles = [moderatorRole];
         readonly RoleCollection userModeratorRoles = [moderatorRole, userRole];
 
+
         [TestMethod]
-        public void IsAuthorizedWhenUserIsNullThenReturnFalse()
+        public void IsAuthorized_UserIsNull_ReturnsFalse()
         {
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(null, adminRole));
         }
 
-
         [TestMethod]
-        public void IsAuthorizedWhenUserHasNoRolesThenReturnFalse()
+        public void IsAuthorized_UserHasNoRoles_ReturnsFalse()
         {
             Principal? user = new Principal("user", null);
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
@@ -37,7 +36,7 @@ namespace TestRBAC.security.Authorisation
         }
 
         [TestMethod]
-        public void IsAuthorizedWhenUserHasUserRole()
+        public void IsAuthorized_UserHasUserRole_ReturnsExpectedAuthorization()
         {
             Principal? user = new Principal("user", oneUserRoles);
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
@@ -46,13 +45,12 @@ namespace TestRBAC.security.Authorisation
         }
 
         [TestMethod]
-        public void IsAuthorizedWhenUserHasUserAndModeratorRole()
+        public void IsAuthorized_UserHasUserAndModeratorRole_ReturnsExpectedAuthorization()
         {
             Principal? user = new Principal("user", userModeratorRoles);
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
             Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userModeratorRoles));
             Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userRole));
         }
-
     }
 }
