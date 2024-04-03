@@ -21,16 +21,6 @@ namespace TestRBAC.security.Authorisation
         readonly RoleCollection oneModeratorRoles = [moderatorRole];
         readonly RoleCollection userModeratorRoles = [moderatorRole, userRole];
 
-        static readonly IAuthenticator authenticator = new MockAuthenticatorLargertThen3();
-        static readonly IRoleProvider roleProvider = new MockRoleProvider();
-        static SecurityContext sc = new SecurityContext(authenticator, roleProvider);
-
-        //[ClassInitialize]
-        //public static void ClassInitialize()
-        //{
-        //     sc = new SecurityContext(authenticator, roleProvider);
-        //}
-
         [TestMethod]
         public void IsAuthorizedWhenUserIsNullThenReturnFalse()
         {
