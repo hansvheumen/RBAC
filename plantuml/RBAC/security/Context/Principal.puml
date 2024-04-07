@@ -1,9 +1,0 @@
-@startuml
-class Principal {
-    + Principal(name:string?, roles:RoleCollection)
-    + Name : string? <<get>>
-}
-class "List`1"<T> {
-}
-Principal --> "Roles" RoleCollection
-@enduml

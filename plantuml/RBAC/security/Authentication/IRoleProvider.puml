@@ -1,6 +1,0 @@
-@startuml
-interface IRoleProvider {
-}
-class "List`1"<T> {
-}
-@enduml

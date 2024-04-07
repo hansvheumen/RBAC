@@ -16,19 +16,19 @@
 
             //login as a Biker
             context.Login("Fisherman", "shark");
-            hobbyService.createHobby("Fishing");
-            hobbyService.deleteHobby("Fishing");
+            hobbyService.CreateHobby("Fishing");
+            hobbyService.DeleteHobby("Fishing");
 
             //login as an Admin
             context.Login("Admin", "admin");
-            hobbyService.createHobby("Debugging");
-            hobbyService.deleteHobby("Debugging");
+            hobbyService.CreateHobby("Debugging");
+            hobbyService.DeleteHobby("Debugging");
         }
 
         private static SecurityContext config()
         {
             IRoleProvider roleProvider = new MyRoleProvider();
-            MyAuthenticator authenticator = new();
+            IAuthenticator authenticator = new MyAuthenticator();
             SecurityContext context = new(authenticator, roleProvider);
             return context;
         }

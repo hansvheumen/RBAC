@@ -5,14 +5,9 @@
     using System.Diagnostics;
     using System.Xml.Linq;
 
-    public class HobbyService
+    public class HobbyService(SecurityContext context)
     {
-
-        public HobbyService(SecurityContext context)
-        {
-            Context = context;
-        }
-        public void createHobby(string hobby)
+        public void CreateHobby(string hobby)
         {
             Debug.WriteLine("\n++++++++++++++++++++++++++++++");
             if (!Context.IsUserInRole(["Player"])) return;
@@ -20,7 +15,7 @@
             // Create a new hobby
         }
 
-        public void deleteHobby(string hobby)
+        public void DeleteHobby(string hobby)
         {
             if (!Context.IsUserInRole(["Moderator", "Admin"])) return;
 
@@ -28,6 +23,6 @@
             // Delete a hobby
         }
 
-        public SecurityContext Context { get;}
+        public SecurityContext Context { get; } = context;
     }
 }

@@ -11,14 +11,35 @@ skinparam DefaultFontName "Ink Free"
 ' ** = bold
 
 
+namespace Authentication <<Folder>> {
+
+    interface IAuthenticator {
+        + Execute(string username, string password) : Principal;
+    }      
+}
+
+
+namespace Authorisation <<Folder>> {
+    
+    class AuthorisationByRole {
+        + {static} IsAuthorized(principal:Principal, role:Role) : bool
+        + {static} IsAuthorized(principal:Principal, roles:RoleCollection) : bool    
+    }
+
+    interface IRoleProvider {
+        + GetRoles(principal:Principal) : RoleCollection
+    }
+   
+}
+
 namespace Context <<Folder>> {
 
     class          SecurityContext{
-        + SecurityContext()
-        + SecurityContext(Principal user)
-        + void authorizeUser(Principal user)
-        + bool IsUserInRole(role:Role)
-        + bool IsUserInRole(roles:RoleCollection)
+        + SecurityContext(authenticator:IAuthenticator, roleProvider:IRoleProvider)
+        + SecurityContext(authenticator:IAuthenticator)
+        + Login(username:string, password:string) : Principal
+        + IsUserInRole(role:Role) : bool
+        + IsUserInRole(roles:RoleCollection) : bool
     }
 
     class Principal {
@@ -26,30 +47,10 @@ namespace Context <<Folder>> {
         + string name <<get>>
     }
 
-    SecurityContext --> "LoggedInUser" Principal
-}
-
-
-namespace Authentication <<Folder>> {
-
-    class         AuthenticationByUsernamePassword{
-        + AuthenticationByUsernamePassword(\n        SecurityContext context, \n         IAuthenticator authenticator,   \n         IRoleProvider roleProvider)
-     + boolean login(String username, String password)	
-    }
-    AuthenticationByUsernamePassword --> SecurityContext
-
-    
-
-}
-
-
-namespace Authorisation <<Folder>> {
-    class AuthorisationByRole {
-        + AuthorisationByRole(SecurityContext context)
-        + bool isAuthorized(RoleCollection roles)
-    }
- 
-    AuthorisationByRole --> SecurityContext
+    SecurityContext -right-> "LoggedInUser" Principal
+    SecurityContext .down.> IAuthenticator
+    SecurityContext .down.> AuthorisationByRole
+    SecurityContext .down.> IRoleProvider
 }
 
 

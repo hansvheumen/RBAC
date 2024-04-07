@@ -1,9 +1,0 @@
-@startuml
-class SecurityContextTest {
-    + whenUserIsModeratorAndMethodIsAuthorisedForModerator() : void
-    + whenAndMethodHasTwoAuthisationsAndUserHasTwoAutorisationsShouldReturnTrue() : void
-    + whenAndMethodHasOneAuthisationsAndUserHasTwoAutorisationsShouldReturnFalse() : void
-}
-class "List`1"<T> {
-}
-@enduml
