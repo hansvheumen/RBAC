@@ -2,18 +2,16 @@ namespace TestRBAC.security.Authorisation
 {
 
     using RBAC.Security.Context;
-    using TestRBAC.security.Mocks;
-    using Role = String;
-    using RoleCollection = List<String>;
     using RBAC.Security.Authorisation;
+    using TestRBAC.security.Mocks;
+    using RoleCollection = List<RBAC.Security.Authorisation.Role>;
 
     [TestClass]
     public class AuthorisationByRoleTest
     {
-
-        static readonly Role adminRole = MockUsers.Role.admin.ToString();
-        static readonly Role moderatorRole = MockUsers.Role.moderator.ToString();
-        static readonly Role userRole = MockUsers.Role.user.ToString();
+        static readonly Role adminRole = MockUsers.roles["admin"];
+        static readonly Role moderatorRole = MockUsers.roles["moderator"];
+        static readonly Role userRole = MockUsers.roles["user"];
 
         readonly RoleCollection appRoles = [adminRole, moderatorRole, userRole];
         readonly RoleCollection oneUserRoles = [userRole];

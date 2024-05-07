@@ -8,14 +8,14 @@ namespace TestRBAC.security.Mocks
 {
     using RBAC.Security.Authorisation;
     using RBAC.Security.Context;
-    using RoleCollection = List<string>;
+    using RoleCollection = List<RBAC.Security.Authorisation.Role>;
     class MockRoleProviderUser : IRoleProvider
     {
-        private MockUsers mockUsers = new MockUsers();  
+        private MockUsers mockUsers = new MockUsers();
 
         public RoleCollection? GetRolesForUser(string? username)
-        {       
-            RoleCollection? roles = [MockUsers.Role.user.ToString()];
+        {
+            RoleCollection? roles = [MockUsers.roles["user"]];
             return roles;
         }
 

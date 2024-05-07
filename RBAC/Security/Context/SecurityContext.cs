@@ -3,9 +3,7 @@ namespace RBAC.Security.Context
     using RBAC.Security.Authentication;
     using RBAC.Security.Authorisation;
 
-    using RoleCollection = List<String>;
-    using Role = String;
-    using System.Data;
+    using RoleCollection = List<RBAC.Security.Authorisation.Role>;
 
     /// <summary>
     /// Represents the security context of the application.

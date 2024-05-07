@@ -1,6 +1,8 @@
+using RBAC.Security.Authorisation;
+
 namespace RBAC.Security.Context
 {
-    using RoleCollection = List<String>;
+    using RoleCollection = List<Role>;
 
     /// <summary>
     /// Represents a principal user in the system.

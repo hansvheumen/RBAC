@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RBAC.Security.Authorisation
+﻿namespace RBAC.Security.Authorisation
 {
-    using RoleCollection = List<string>;
+    using RoleCollection = List<Role>;
     /// <summary>
     /// Defines the contract for a role provider.
     /// </summary>

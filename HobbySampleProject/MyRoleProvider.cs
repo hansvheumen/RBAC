@@ -1,18 +1,18 @@
 ﻿namespace Hobby
 {
     using RBAC.Security.Authorisation;
-    using RoleCollection = List<String>;
+    using RoleCollection = List<RBAC.Security.Authorisation.Role>;
     internal class MyRoleProvider : IRoleProvider
     {
         public RoleCollection GetRolesForUser(string? username)
         {
             if (username == "Fisherman")
             {
-                return ["Player"];
+                return [new("Player")];
             }
             else
             {
-                return ["Admin", "Moderator", "Player"];
+                return [new("Admin"), new("Moderator"), new("Player")];
             }
         }
     }

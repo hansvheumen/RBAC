@@ -1,9 +1,7 @@
 namespace RBAC.Security.Authorisation
 {
     using Security.Context;
-    using System.Data;
-    using RoleCollection = List<String>;
-    using Role = String;
+    using RoleCollection = List<Role>;
     /// <summary>
     /// Provides methods for authorizing a user based on their roles.
     /// </summary>

@@ -5,10 +5,6 @@ namespace TestRBAC.security.Context
     using RBAC.Security.Context;
     using TestRBAC.security.Mocks;
 
-    using System.Net;
-    using Role = String;
-    using RoleCollection = List<String>;
-
     [TestClass]
     public class SecurityContextTest
     {
@@ -73,7 +69,7 @@ namespace TestRBAC.security.Context
             Principal? admin = sc.Login(MockUsers.Username.Adam.ToString(), "admin");
 
             Assert.AreEqual(1, admin.Roles.Count());
-            Assert.AreEqual(MockUsers.Role.user.ToString(), admin.Roles.First());
+            Assert.AreEqual(MockUsers.roles["user"], admin.Roles.First());
 
         }
     }
