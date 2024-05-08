@@ -8,7 +8,7 @@
         {
             if (username.Length > 3 && password.Length > 3)
             {
-                return new Principal(username, null);
+                return new Principal(username);
             }
             else
             {
