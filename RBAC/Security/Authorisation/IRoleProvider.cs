@@ -1,7 +1,6 @@
 ﻿namespace RBAC.Security.Authorisation
 {
-    using RoleCollection = List<Role>;
-    /// <summary>
+        /// <summary>
     /// Defines the contract for a role provider.
     /// </summary>
     public interface IRoleProvider
@@ -11,6 +10,6 @@
         /// </summary>
         /// <param name="username">The username of the user.</param>
         /// <returns>A collection of roles.</returns>
-        RoleCollection? GetRolesForUser(string? username);
+        RoleCollection GetRolesForUser(string username);
     }
 }

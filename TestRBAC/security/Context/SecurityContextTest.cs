@@ -10,7 +10,7 @@ namespace TestRBAC.security.Context
     {
         static IAuthenticator authenticator = new MockAuthenticatorLargertThen3();
         static readonly IRoleProvider roleProvider = new MockRoleProvider();
-        static SecurityContext sc = new SecurityContext(authenticator, roleProvider);
+        static SecurityContext sc = new(authenticator, roleProvider);
 
         [TestInitialize]
         public void TestInitialize()
@@ -54,7 +54,7 @@ namespace TestRBAC.security.Context
 
             Principal? admin = sc.Login(MockUsers.Username.Adam.ToString(), "admin");
 
-            Assert.AreEqual(0, admin.Roles.Count());
+            Assert.AreEqual(0, admin?.Roles?.Count);
 
         }
 
@@ -68,8 +68,8 @@ namespace TestRBAC.security.Context
 
             Principal? admin = sc.Login(MockUsers.Username.Adam.ToString(), "admin");
 
-            Assert.AreEqual(1, admin.Roles.Count());
-            Assert.AreEqual(MockUsers.roles["user"], admin.Roles.First());
+            Assert.AreEqual(1, admin?.Roles.Count);
+            Assert.AreEqual(MockUsers.roles["user"], admin?.Roles.First());
 
         }
     }

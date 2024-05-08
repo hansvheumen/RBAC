@@ -3,26 +3,18 @@ namespace RBAC.Security.Context
     using RBAC.Security.Authentication;
     using RBAC.Security.Authorisation;
 
-    using RoleCollection = List<RBAC.Security.Authorisation.Role>;
-
     /// <summary>
     /// Represents the security context of the application.
     /// </summary>
-    public class SecurityContext
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="SecurityContext"/> class.
+    /// </remarks>
+    /// <param name="authenticator">The authenticator.</param>
+    /// <param name="roleProvider">The role provider.</param>
+    public class SecurityContext(IAuthenticator authenticator, IRoleProvider? roleProvider)
     {
-        private readonly IAuthenticator authenticator;
-        private readonly IRoleProvider? roleProvider;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SecurityContext"/> class.
-        /// </summary>
-        /// <param name="authenticator">The authenticator.</param>
-        /// <param name="roleProvider">The role provider.</param>
-        public SecurityContext(IAuthenticator authenticator, IRoleProvider? roleProvider)
-        {
-            this.authenticator = authenticator;
-            this.roleProvider = roleProvider;
-        }
+        private readonly IAuthenticator authenticator = authenticator;
+        private readonly IRoleProvider? roleProvider = roleProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SecurityContext"/> class.
@@ -48,13 +40,13 @@ namespace RBAC.Security.Context
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
-        /// <returns>The logged in user.</returns>
+        /// <returns>The logged in user when autenticated else returns null.</returns>
         public Principal? Login(string username, string password)
         {
             Principal? currentUser = authenticator.Execute(username, password);
             if (currentUser is not null && roleProvider is not null)
             {
-                RoleCollection? roles = roleProvider.GetRolesForUser(username);
+                RoleCollection roles = roleProvider.GetRolesForUser(username);
                 currentUser = new Principal(username, roles);
             }
             AuthorizeUser(currentUser);

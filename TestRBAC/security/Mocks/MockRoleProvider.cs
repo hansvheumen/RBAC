@@ -2,15 +2,15 @@
 {
     using RBAC.Security.Authorisation;
     using RBAC.Security.Context;
-    using RoleCollection = List<RBAC.Security.Authorisation.Role>;
+    
     class MockRoleProvider : IRoleProvider
     {
-        private MockUsers mockUsers = new MockUsers();
+        private readonly MockUsers mockUsers = new();
 
-        public RoleCollection? GetRolesForUser(string? username)
+        public RoleCollection GetRolesForUser(string username)
         {
             Principal principal = mockUsers.GetUser(username);
-            RoleCollection? roles = principal.Roles;
+            RoleCollection roles = principal.Roles;
             return roles;
         }
 

@@ -2,29 +2,24 @@ using RBAC.Security.Authorisation;
 
 namespace RBAC.Security.Context
 {
-    using RoleCollection = List<Role>;
 
     /// <summary>
     /// Represents a principal user in the system.
     /// </summary>
-    public class Principal
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="Principal"/> class with roles.
+    /// </remarks>
+    /// <param name="name">The name of the user.</param>
+    /// <param name="roles">The roles of the user.</param>
+    public class Principal(string name, RoleCollection roles)
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Principal"/> class.
+        /// Initializes a new instance of the <see cref="Principal"/> class without roles.
         /// </summary>
         /// <param name="name">The name of the user.</param>
-        /// <param name="roles">The roles of the user.</param>
-        public Principal(string name, RoleCollection? roles)
+        public Principal(string name) : this(name, [])
         {
-            Name = name;
-            if (roles is null)
-            {
-                this.Roles = new RoleCollection();
-            }
-            else
-            {
-                this.Roles = roles;
-            }
         }
 
         /// <summary>
@@ -39,11 +34,11 @@ namespace RBAC.Security.Context
         /// <summary>
         /// Gets the name of the user.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; } = name;
 
         /// <summary>
         /// Gets the roles of the user.
         /// </summary>
-        public RoleCollection Roles { get; }
+        public RoleCollection Roles { get; } = roles ?? [];
     }
 }

@@ -6,7 +6,7 @@
     {
         public Principal? Execute(string username, string password)
         {
-            return new Principal(username, null);
+            return new Principal(username);
         }
     }
 

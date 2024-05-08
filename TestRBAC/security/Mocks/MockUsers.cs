@@ -2,7 +2,8 @@
 {
     using RBAC.Security.Context;
     using RBAC.Security.Authorisation;
-    using RoleCollection = List<RBAC.Security.Authorisation.Role>;
+    using System.Collections.Generic;
+
     class MockUsers
     {
         public enum Username
@@ -12,9 +13,9 @@
             Molly
         }
 
-        Dictionary<string, Principal> users = new Dictionary<string, Principal>();
+        readonly Dictionary<string, Principal> users = [];
 
-        public static Dictionary<string, Role> roles = new Dictionary<string, Role>()
+        public static Dictionary<string, Role> roles = new()
         {
             { "admin", new Role("admin") },
             { "user", new Role("user") },
@@ -24,11 +25,12 @@
         public MockUsers()
         {
             string username = Username.Adam.ToString();
-            users.Add(username, new Principal(username, new RoleCollection { roles["admin"] }));
+            users.Add(username, new Principal(username, [ roles["admin"] ]));
             username = Username.Ursula.ToString();
-            users.Add(username, new Principal(username, new RoleCollection { roles["user"] }));
+            users.Add(username, new Principal(username, [ roles["user"] ]));
             username = Username.Molly.ToString();
-            users.Add(username, new Principal(username, new RoleCollection { roles["moderator"], roles["user"] }));
+            users.Add(username, new Principal(username, [ roles["moderator"], roles["user"] ]));
+
         }
 
         public Principal GetUser(string username)
