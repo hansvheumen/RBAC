@@ -1,36 +1,36 @@
 ﻿namespace TestRBAC.security.Mocks
 {
-    using RBAC.Security.Authentication;
     using RBAC.Security.Context;
-    using System.Collections.Specialized;
-    using System.Security.Cryptography.X509Certificates;
-    using RoleCollection = List<string>;
+    using RBAC.Security.Authorisation;
+    using System.Collections.Generic;
+
     class MockUsers
     {
-        public enum Role
+        public enum Username
         {
-            admin,
-            user,
-            moderator
-        }
-
-        public enum Username { 
             Adam,
             Ursula,
             Molly
         }
 
+        readonly Dictionary<string, Principal> users = [];
 
-        Dictionary<string, Principal> users = new Dictionary<string, Principal>();
+        public static Dictionary<string, Role> roles = new()
+        {
+            { "admin", new Role("admin") },
+            { "user", new Role("user") },
+            { "moderator", new Role("moderator") }
+        };
 
         public MockUsers()
         {
             string username = Username.Adam.ToString();
-            users.Add(username, new Principal(username, new RoleCollection { Role.admin.ToString()}));
+            users.Add(username, new Principal(username, [ roles["admin"] ]));
             username = Username.Ursula.ToString();
-            users.Add(username, new Principal(username, new RoleCollection { Role.user.ToString() }));
+            users.Add(username, new Principal(username, [ roles["user"] ]));
             username = Username.Molly.ToString();
-            users.Add(username, new Principal(username, new RoleCollection { Role.moderator.ToString(), Role.user.ToString() }));
+            users.Add(username, new Principal(username, [ roles["moderator"], roles["user"] ]));
+
         }
 
         public Principal GetUser(string username)
@@ -41,6 +41,3 @@
     }
 
 }
-
-
-

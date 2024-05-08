@@ -5,17 +5,12 @@ namespace TestRBAC.security.Context
     using RBAC.Security.Context;
     using TestRBAC.security.Mocks;
 
-    using System.Net;
-    using Role = String;
-    using RoleCollection = List<String>;
-
     [TestClass]
     public class SecurityContextIT
     {
-
-        static readonly Role adminRole = MockUsers.Role.admin.ToString();
-        static readonly Role moderatorRole = MockUsers.Role.moderator.ToString();
-        static readonly Role userRole = MockUsers.Role.user.ToString();
+        static readonly Role adminRole = MockUsers.roles["admin"];
+        static readonly Role moderatorRole = MockUsers.roles["moderator"];
+        static readonly Role userRole = MockUsers.roles["user"];
 
         static readonly RoleCollection appRoles = [adminRole, moderatorRole, userRole];
 
@@ -28,7 +23,7 @@ namespace TestRBAC.security.Context
 
         static readonly IAuthenticator authenticator = new MockAuthenticatorLargertThen3();
         static readonly IRoleProvider roleProvider = new MockRoleProvider();
-        static SecurityContext sc = new SecurityContext(authenticator, roleProvider);
+        static SecurityContext sc = new(authenticator, roleProvider);
 
         [TestInitialize]
         public void TestInitialize()
@@ -39,7 +34,7 @@ namespace TestRBAC.security.Context
         [TestMethod]
         public void IsUserInRole_UserIsAdminAndMethodIsAuthorisedForAdmin_ReturnsExpectedAuthorization()
         {
-         
+
             Principal? admin = sc.Login(MockUsers.Username.Adam.ToString(), "admin");
 
             Assert.IsNotNull(admin);
@@ -52,7 +47,7 @@ namespace TestRBAC.security.Context
         [TestMethod]
         public void IsUserInRole_MethodAndUserHaveTwoAuthorizations_ReturnsTrue()
         {
-            Principal? moderator = sc.Login(MockUsers.Username.Molly.ToString(), "moderator");
+            sc.Login(MockUsers.Username.Molly.ToString(), "moderator");
 
             Assert.IsTrue(sc.IsUserInRole(methodUserAndAdminRole));
 

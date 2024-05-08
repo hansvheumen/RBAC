@@ -5,16 +5,12 @@ namespace TestRBAC.security.Context
     using RBAC.Security.Context;
     using TestRBAC.security.Mocks;
 
-    using System.Net;
-    using Role = String;
-    using RoleCollection = List<String>;
-
     [TestClass]
     public class SecurityContextTest
     {
         static IAuthenticator authenticator = new MockAuthenticatorLargertThen3();
         static readonly IRoleProvider roleProvider = new MockRoleProvider();
-        static SecurityContext sc = new SecurityContext(authenticator, roleProvider);
+        static SecurityContext sc = new(authenticator, roleProvider);
 
         [TestInitialize]
         public void TestInitialize()
@@ -58,7 +54,7 @@ namespace TestRBAC.security.Context
 
             Principal? admin = sc.Login(MockUsers.Username.Adam.ToString(), "admin");
 
-            Assert.AreEqual(0, admin.Roles.Count());
+            Assert.AreEqual(0, admin?.Roles?.Count);
 
         }
 
@@ -72,8 +68,8 @@ namespace TestRBAC.security.Context
 
             Principal? admin = sc.Login(MockUsers.Username.Adam.ToString(), "admin");
 
-            Assert.AreEqual(1, admin.Roles.Count());
-            Assert.AreEqual(MockUsers.Role.user.ToString(), admin.Roles.First());
+            Assert.AreEqual(1, admin?.Roles.Count);
+            Assert.AreEqual(MockUsers.roles["user"], admin?.Roles.First());
 
         }
     }

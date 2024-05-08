@@ -2,18 +2,15 @@ namespace TestRBAC.security.Authorisation
 {
 
     using RBAC.Security.Context;
-    using TestRBAC.security.Mocks;
-    using Role = String;
-    using RoleCollection = List<String>;
     using RBAC.Security.Authorisation;
+    using TestRBAC.security.Mocks;
 
     [TestClass]
     public class AuthorisationByRoleTest
     {
-
-        static readonly Role adminRole = MockUsers.Role.admin.ToString();
-        static readonly Role moderatorRole = MockUsers.Role.moderator.ToString();
-        static readonly Role userRole = MockUsers.Role.user.ToString();
+        static readonly Role adminRole = MockUsers.roles["admin"];
+        static readonly Role moderatorRole = MockUsers.roles["moderator"];
+        static readonly Role userRole = MockUsers.roles["user"];
 
         readonly RoleCollection appRoles = [adminRole, moderatorRole, userRole];
         readonly RoleCollection oneUserRoles = [userRole];
@@ -30,7 +27,7 @@ namespace TestRBAC.security.Authorisation
         [TestMethod]
         public void IsAuthorized_UserHasNoRoles_ReturnsFalse()
         {
-            Principal? user = new Principal("user", null);
+            Principal? user = new("user");
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, userModeratorRoles));
         }
@@ -38,7 +35,7 @@ namespace TestRBAC.security.Authorisation
         [TestMethod]
         public void IsAuthorized_UserHasUserRole_ReturnsExpectedAuthorization()
         {
-            Principal? user = new Principal("user", oneUserRoles);
+            Principal? user = new("user", oneUserRoles);
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
             Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userModeratorRoles));
             Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userRole));
@@ -47,7 +44,7 @@ namespace TestRBAC.security.Authorisation
         [TestMethod]
         public void IsAuthorized_UserHasUserAndModeratorRole_ReturnsExpectedAuthorization()
         {
-            Principal? user = new Principal("user", userModeratorRoles);
+            Principal? user = new("user", userModeratorRoles);
             Assert.IsFalse(AuthorisationByRole.IsAuthorized(user, adminRole));
             Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userModeratorRoles));
             Assert.IsTrue(AuthorisationByRole.IsAuthorized(user, userRole));

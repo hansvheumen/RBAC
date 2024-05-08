@@ -2,7 +2,6 @@
 {
     using RBAC.Security.Authentication;
     using RBAC.Security.Context;
-    using RoleCollection = List<string>;
     class MockAuthenticatorLargertThen3 : IAuthenticator
     {
         public Principal? Execute(string username, string password)
@@ -19,6 +18,3 @@
     }
 
 }
-
-
-
