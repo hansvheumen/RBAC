@@ -8,7 +8,7 @@
         public static void Main(string[] args)
         {
 
-            SecurityContext context = config();
+            SecurityContext context = Config();
 
             // Create a new HobbyService
             HobbyService hobbyService = new(context);
@@ -25,7 +25,7 @@
             hobbyService.DeleteHobby("Debugging");
         }
 
-        private static SecurityContext config()
+        private static SecurityContext Config()
         {
             IRoleProvider roleProvider = new MyRoleProvider();
             IAuthenticator authenticator = new MyAuthenticator();

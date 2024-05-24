@@ -6,27 +6,14 @@ namespace RBAC.Security.Authorisation
     {
         public static bool IsAuthorized(Principal? principal, Role role)
         {
-            if (principal is null)
-            {
-                return false;
-            }
-            else
-            {
-                return principal.Roles.Contains(role);
-            }
+            return principal?.Roles.Contains(role) ?? false;
         }
+
 
         public static bool IsAuthorized(Principal? principal, RoleCollection roles)
         {
-            bool isAuthorized = false;
-            foreach (Role role in roles)
-            {
-                if (IsAuthorized(principal, role))
-                {
-                    isAuthorized = true;
-                }
-            }
-            return isAuthorized;
+            return roles.Any(role => IsAuthorized(principal, role));
         }
+
     }
 }
