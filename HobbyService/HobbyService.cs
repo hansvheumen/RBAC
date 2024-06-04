@@ -2,7 +2,7 @@
 using RBAC.Security.Authorisation;
 using System.Collections.Immutable;
 
-namespace HobbyProject.services
+namespace HobbyBackend.services
 {
 	public class HobbyService(SecurityContext context)
 	{
@@ -20,13 +20,13 @@ namespace HobbyProject.services
 
 		public void CreateHobby(Hobby hobby)
 		{
-			if (!Context.IsUserInRole([new Role("Player")])) throw new Exception($"Creating of a Hobby not allowed: {hobby}");
+			if (!Context.IsUserInRole([new Role("Player")])) throw new OperationNotAllowedException($"Creating of a Hobby not allowed: {hobby}");
 			hobbies[hobby.Name] = hobby;
 		}
 
 		public void DeleteHobby(Hobby hobby)
 		{
-			if (!Context.IsUserInRole([new Role("Moderator"), new Role("Admin")])) throw new Exception($"Deleting hobby not allowed:  {hobby}");
+			if (!Context.IsUserInRole([new Role("Moderator"), new Role("Admin")])) throw new OperationNotAllowedException($"Deleting hobby not allowed:  {hobby}");
 			hobbies.Remove(hobby.Name);
 		}
 

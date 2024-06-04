@@ -1,5 +1,5 @@
 ﻿
-using HobbyProject.services;
+using HobbyBackend.services;
 
 namespace HobbyRazorCLient.Models
 {

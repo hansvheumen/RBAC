@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RBAC", "RBAC\RBAC.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRBAC", "TestRBAC\TestRBAC.csproj", "{71C8EF30-B7B3-47BC-B9DE-AAA89217A8CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyService", "HobbyService\HobbyService.csproj", "{F860E609-AB82-4BE9-A53D-578CE5C57A6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyBackend", "HobbyService\HobbyBackend.csproj", "{F860E609-AB82-4BE9-A53D-578CE5C57A6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyRazorCLient", "HobbyRazorCLient\HobbyRazorCLient.csproj", "{411F308B-31B4-4EBE-A674-D0D2DE6F58D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyRazorCLient", "HobbyRazorCLient\HobbyRazorCLient.csproj", "{411F308B-31B4-4EBE-A674-D0D2DE6F58D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

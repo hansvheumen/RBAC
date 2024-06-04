@@ -4,6 +4,8 @@ namespace RBAC.Security.Authorisation
 
     public class AuthorisationByRole
     {
+        protected AuthorisationByRole() { }
+
         public static bool IsAuthorized(Principal? principal, Role role)
         {
             return principal?.Roles.Contains(role) ?? false;
