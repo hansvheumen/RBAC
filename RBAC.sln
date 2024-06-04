@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RBAC", "RBAC\RBAC.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRBAC", "TestRBAC\TestRBAC.csproj", "{71C8EF30-B7B3-47BC-B9DE-AAA89217A8CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbySampleProject", "HobbySampleProject\HobbySampleProject.csproj", "{490C9480-FCA4-4623-89E7-97C6E28A6770}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyConsoleClient", "HobbyConsoleClient\HobbyConsoleClient.csproj", "{490C9480-FCA4-4623-89E7-97C6E28A6770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyService", "HobbyService\HobbyService.csproj", "{F860E609-AB82-4BE9-A53D-578CE5C57A6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{490C9480-FCA4-4623-89E7-97C6E28A6770}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{490C9480-FCA4-4623-89E7-97C6E28A6770}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{490C9480-FCA4-4623-89E7-97C6E28A6770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F860E609-AB82-4BE9-A53D-578CE5C57A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F860E609-AB82-4BE9-A53D-578CE5C57A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F860E609-AB82-4BE9-A53D-578CE5C57A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F860E609-AB82-4BE9-A53D-578CE5C57A6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB5E75D4-BC35-410C-AD35-B970218E9DAB}
 	EndGlobalSection
 EndGlobal
