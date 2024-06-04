@@ -1,0 +1,25 @@
+﻿@page
+@model HobbyRazorCLient.Pages.LoginModel
+@{
+}
+
+<h1>Login</h1>
+<div align="right">MyHobbies: @Model.LoginPrincipal.Name</div>
+
+<form method="post">
+	<table>
+		<tr>
+			<td><label asp-for="LoginPrincipal.Name"></label></td>
+			<i><p class="text-info">("Fisherman", "1234") - ("Admin", "1234")</p></i>
+			<td><input asp-for="LoginPrincipal.Name" /></td>
+		</tr>
+		<tr>
+			<td><label asp-for="LoginPrincipal.Password"></label></td>
+			<td><input value="1234" asp-for="LoginPrincipal.Password" /></td>
+		</tr>
+	</table>
+	<br />
+	<button type="submit" class="btn btn-primary">Login</button>
+	<button type="submit" class="btn btn-secondary" value="Logout" asp-page-handler="Logout">Logout</button>
+</form>
+<hr />

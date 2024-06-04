@@ -32,6 +32,11 @@ namespace RBAC.Security.Context
             return loggedInUser;
         }
 
+        public void Logout()
+		{
+			AuthorizeUser(null);
+		}
+
         private void AuthorizeUser(Principal? user)
         {
             loggedInUser = user;
