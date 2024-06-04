@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HobbyService\HobbyService.csproj" />
     <ProjectReference Include="..\RBAC\RBAC.csproj" />
   </ItemGroup>
 

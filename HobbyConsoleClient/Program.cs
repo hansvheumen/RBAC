@@ -1,36 +1,76 @@
 ﻿namespace Hobby
 {
-    using RBAC.Security.Authorisation;
-    using RBAC.Security.Context;
-    using RBAC.Security.Authentication;
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+	using HobbyProject.services;
+	using RBAC.Security.Authentication;
+	using RBAC.Security.Authorisation;
+	using RBAC.Security.Context;
+	using System.Diagnostics;
 
-            SecurityContext context = Config();
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
 
-            // Create a new HobbyService
-            HobbyService hobbyService = new(context);
+			SecurityContext context = Config();
+
+			// Create a new HobbyService
+			HobbyService hobbyService = new(context);
 
 
-            //login as a Biker
-            context.Login("Fisherman", "shark");
-            hobbyService.CreateHobby("Fishing");
-            hobbyService.DeleteHobby("Fishing");
+			//login as a Fisherman
+			context.Login("Fisherman", "shark");
+			Hobby fishing = new Hobby("Fishing", "");
+			try
+			{
+				hobbyService.CreateHobby(fishing);
+				Debug.WriteLine($"Hobby created {fishing}");
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.Message);
+			}
+			try
+			{
+				hobbyService.DeleteHobby(fishing);
+			}
+			catch (Exception ex)
+			{
 
-            //login as an Admin
-            context.Login("Admin", "admin");
-            hobbyService.CreateHobby("Debugging");
-            hobbyService.DeleteHobby("Debugging");
-        }
+				Debug.WriteLine(ex.Message);
+			}
 
-        private static SecurityContext Config()
-        {
-            IRoleProvider roleProvider = new MyRoleProvider();
-            IAuthenticator authenticator = new MyAuthenticator();
-            SecurityContext context = new(authenticator, roleProvider);
-            return context;
-        }
-    }
+
+			//login as an Admin
+			context.Login("Admin", "admin");
+			Hobby debugging = new Hobby("Debugging", "");
+			try
+			{
+				hobbyService.CreateHobby(debugging);
+				Debug.WriteLine($"Hobby created {debugging}");
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.Message);
+			}
+			try
+			{
+				hobbyService.DeleteHobby(debugging);
+				Debug.WriteLine($"Hobby deleted {debugging}");
+			}
+			catch (Exception ex)
+			{
+
+				Debug.WriteLine(ex.Message);
+			}
+		
+		}
+
+		private static SecurityContext Config()
+		{
+			IRoleProvider roleProvider = new MyRoleProvider();
+			IAuthenticator authenticator = new MyAuthenticator();
+			SecurityContext context = new(authenticator, roleProvider);
+			return context;
+		}
+	}
 }
