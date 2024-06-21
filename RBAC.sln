@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRBAC", "TestRBAC\TestRB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyBackend", "HobbyService\HobbyBackend.csproj", "{F860E609-AB82-4BE9-A53D-578CE5C57A6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyRazorCLient", "HobbyRazorCLient\HobbyRazorCLient.csproj", "{411F308B-31B4-4EBE-A674-D0D2DE6F58D7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorClient", "RazorClient\RazorClient.csproj", "{690F981A-F79E-4094-AFCC-F60227672B99}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{F860E609-AB82-4BE9-A53D-578CE5C57A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F860E609-AB82-4BE9-A53D-578CE5C57A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F860E609-AB82-4BE9-A53D-578CE5C57A6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{411F308B-31B4-4EBE-A674-D0D2DE6F58D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{411F308B-31B4-4EBE-A674-D0D2DE6F58D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{411F308B-31B4-4EBE-A674-D0D2DE6F58D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{411F308B-31B4-4EBE-A674-D0D2DE6F58D7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{690F981A-F79E-4094-AFCC-F60227672B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{690F981A-F79E-4094-AFCC-F60227672B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{690F981A-F79E-4094-AFCC-F60227672B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
