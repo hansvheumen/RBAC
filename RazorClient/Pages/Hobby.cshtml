@@ -1,0 +1,44 @@
+﻿@page
+@model RazorCLient.Pages.HobbyModel
+@{
+}
+<h1>Hobbies</h1>
+<div align="right"><i>MyHobbies:</i> <b>@Model.LoginPrincipal.Name</b></div>
+<p class="text-warning">@Model.Message</p>
+
+<form method="post">
+	<table>
+		<tr>
+			<td><label asp-for="NewHobby.Name"></label></td>
+			<td><input asp-for="NewHobby.Name" /></td>
+		</tr>
+		<tr>
+			<td><label asp-for="NewHobby.Description"></label></td>
+			<td><input asp-for="NewHobby.Description" /></td>
+		</tr>
+	</table>
+	<br />
+	<button type="submit" class="btn btn-primary">Create</button>
+	<button type="submit" class="btn btn-warning" asp-page-handler="Delete">Delete</button>
+</form>
+<br />
+
+<hr />
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var hobby in Model.Hobbies)
+		{
+			<tr>
+				<td>@hobby.Name</td>
+				<td>@hobby.Description</td>
+			</tr>
+		}
+	</tbody>
+</table>
