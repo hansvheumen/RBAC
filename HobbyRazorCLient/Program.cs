@@ -1,3 +1,4 @@
+using HobbyBackend.DAL;
 using HobbyBackend.services;
 using HobbyRazorCLient.Security;
 using RBAC.Security.Authentication;
@@ -13,6 +14,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddTransient<IAuthenticator, MyAuthenticator>();
 builder.Services.AddTransient<IRoleProvider, MyRoleProvider>();
 builder.Services.AddSingleton<SecurityContext>();
+builder.Services.AddSingleton<IHobbyDAO, HobbyDAO>();
 builder.Services.AddTransient<HobbyService>();
 
 var app = builder.Build();
