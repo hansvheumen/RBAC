@@ -1,36 +1,31 @@
 ﻿using RBAC.Security.Context;
 using RBAC.Security.Authorisation;
 using System.Collections.Immutable;
+using HobbyBackend.DAL;
 
 namespace HobbyBackend.services
 {
-	public class HobbyService(SecurityContext context)
+	public class HobbyService(IHobbyDAO hobbyDAO, SecurityContext context)
 	{
-
-		private static readonly Dictionary<string, Hobby> hobbies = new() {
-				{"Swimming", new Hobby("Swimming", "Open water")},
-				{"Walking", new Hobby("Walking", "Trail walking")},
-				{"Biking", new Hobby("Biking", "Gravel")},
-			};
-
 		public ImmutableList<Hobby> GetHobbies()
 		{
-			return [.. hobbies.Values];
+			return HobbyDAO.GetHobbies();
 		}
 
 		public void CreateHobby(Hobby hobby)
 		{
 			if (!Context.IsUserInRole([new Role("Player")])) throw new OperationNotAllowedException($"Creating of a Hobby not allowed: {hobby}");
-			hobbies[hobby.Name] = hobby;
+			HobbyDAO.CreateHobby(hobby);
 		}
 
 		public void DeleteHobby(Hobby hobby)
 		{
 			if (!Context.IsUserInRole([new Role("Moderator"), new Role("Admin")])) throw new OperationNotAllowedException($"Deleting hobby not allowed:  {hobby}");
-			hobbies.Remove(hobby.Name);
+			HobbyDAO.DeleteHobby(hobby);
 		}
 
 		public SecurityContext Context { get; } = context;
+		private IHobbyDAO HobbyDAO { get; } = hobbyDAO;
 	}
 
 	public record Hobby(string Name, string Description);
