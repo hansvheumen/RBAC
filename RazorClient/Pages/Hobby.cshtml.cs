@@ -1,4 +1,4 @@
-using HobbyBackend.services;
+using HobbyBackend.BusinessService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorCLient.Models;
@@ -6,7 +6,7 @@ using RBAC.Security.Context;
 
 namespace RazorCLient.Pages
 {
-	public class HobbyModel : PageModel
+    public class HobbyModel : PageModel
 	{
 		private readonly SecurityContext context = Configuration.SecurityContextInstance;
 		private readonly HobbyService _hobbyService = Configuration.CreateHobbyService();

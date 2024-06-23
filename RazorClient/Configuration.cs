@@ -1,11 +1,12 @@
-﻿using HobbyBackend.DAL;
-using HobbyBackend.services;
+﻿using HobbyBackend.BusinessService;
+using HobbyBackend.BusinessService.Interfaces.DAL;
+using HobbyBackend.DAL;
 using RazorCLient.Security;
 using RBAC.Security.Context;
 
 namespace RazorCLient
 {
-	public class Configuration
+    public class Configuration
 	{
 		private static SecurityContext securityContext = null;
 		private static IHobbyDAO hobbyDAO = null;

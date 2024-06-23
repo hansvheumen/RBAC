@@ -1,9 +1,10 @@
-﻿using HobbyBackend.services;
+﻿using HobbyBackend.BusinessService;
+using HobbyBackend.BusinessService.Interfaces.DAL;
 using System.Collections.Immutable;
 
 namespace HobbyBackend.DAL
 {
-	public class HobbyDAO() : IHobbyDAO
+    public class HobbyDAO() : IHobbyDAO
     {
 
         private static readonly Dictionary<string, Hobby> hobbies = new() {

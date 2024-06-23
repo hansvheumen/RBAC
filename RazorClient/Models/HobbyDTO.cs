@@ -1,8 +1,8 @@
-﻿using HobbyBackend.services;
+﻿using HobbyBackend.BusinessService;
 
 namespace RazorCLient.Models
 {
-	public record HobbyDTO(string Name, string Description)
+    public record HobbyDTO(string Name, string Description)
 	{
 		public HobbyDTO() : this("", "") { }
 		public HobbyDTO(Hobby hobby) : this(hobby.Name, hobby.Description) { }

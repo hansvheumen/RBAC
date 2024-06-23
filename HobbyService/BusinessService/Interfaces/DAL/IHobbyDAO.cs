@@ -1,9 +1,8 @@
-﻿using HobbyBackend.services;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
-namespace HobbyBackend.DAL
+namespace HobbyBackend.BusinessService.Interfaces.DAL
 {
-	public interface IHobbyDAO
+    public interface IHobbyDAO
     {
         void CreateHobby(Hobby hobby);
         void DeleteHobby(Hobby hobby);
