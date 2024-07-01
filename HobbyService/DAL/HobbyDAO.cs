@@ -1,10 +1,9 @@
 ﻿using HobbyBackend.BusinessService;
 using HobbyBackend.BusinessService.Interfaces.DAL;
-using System.Collections.Immutable;
 
 namespace HobbyBackend.DAL
 {
-    public class HobbyDAO() : IHobbyDAO
+	public class HobbyDAO() : IHobbyDAO
     {
 
         private static readonly Dictionary<string, Hobby> hobbies = new() {
@@ -13,7 +12,7 @@ namespace HobbyBackend.DAL
                 {"Biking", new Hobby("Biking", "Gravel")},
             };
 
-        public ImmutableList<Hobby> GetHobbies()
+        public IEnumerable<Hobby> GetHobbies()
         {
             return [.. hobbies.Values];
         }

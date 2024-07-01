@@ -1,14 +1,13 @@
-﻿using RBAC.Security.Context;
-using RBAC.Security.Authorisation;
-using System.Collections.Immutable;
+﻿using HobbyBackend.BusinessService.Interfaces.DAL;
 using HobbyBackend.services;
-using HobbyBackend.BusinessService.Interfaces.DAL;
+using RBAC.Security.Authorisation;
+using RBAC.Security.Context;
 
 namespace HobbyBackend.BusinessService
 {
-    public class HobbyService(IHobbyDAO hobbyDAO, SecurityContext context)
+	public class HobbyService(IHobbyDAO hobbyDAO, SecurityContext context)
     {
-        public ImmutableList<Hobby> GetHobbies()
+        public IEnumerable<Hobby> GetHobbies()
         {
             return HobbyDAO.GetHobbies();
         }
